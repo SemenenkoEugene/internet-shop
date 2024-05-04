@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.semenenko.internetshop.validation.ClientName;
+import ru.semenenko.internetshop.validation.PhoneNumber;
 
 @Data
 @Builder
@@ -29,6 +30,7 @@ public class ClientDto {
 
     @NotNull
     @Size(min = 10, max = 10, message = "Номер телефона должен содержать 10 цифр")
+    @PhoneNumber(message = "Поле для ввода номера телефона должно содержать только цифры")
     private String phoneNumber;
 
 
