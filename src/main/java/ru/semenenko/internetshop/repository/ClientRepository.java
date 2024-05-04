@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.semenenko.internetshop.entity.Client;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client,Long> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

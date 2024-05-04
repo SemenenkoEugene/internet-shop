@@ -18,7 +18,7 @@ public class ClientMapper {
                 .build();
     }
 
-    public static Client fromDto(ClientDto clientDto){
+    public static Client fromDto(ClientDto clientDto) {
         Client client = new Client();
         client.setId(clientDto.getId());
         client.setFirstname(clientDto.getFirstname());
