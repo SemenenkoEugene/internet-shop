@@ -17,12 +17,12 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = ClientAlreadyExistsException.class)
     public ClientDto createClient(ClientDto clientDto) {
 
         Client client = ClientMapper.fromDto(clientDto);
-        try {
 
+        try {
             Client saveClient = clientRepository.save(client);
             return ClientMapper.toDto(saveClient);
         } catch (Exception e) {

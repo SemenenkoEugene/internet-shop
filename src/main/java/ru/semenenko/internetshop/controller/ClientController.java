@@ -15,7 +15,7 @@ import ru.semenenko.internetshop.service.ClientService;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping(path = "api/v1/clients")
+@RequestMapping(path = "/api/v1/clients")
 public class ClientController {
 
     private final ClientService clientService;
