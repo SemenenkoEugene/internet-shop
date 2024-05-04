@@ -1,6 +1,5 @@
 package ru.semenenko.internetshop.dto;
 
-import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
