@@ -10,8 +10,6 @@ import ru.semenenko.internetshop.mapper.ClientMapper;
 import ru.semenenko.internetshop.repository.ClientRepository;
 import ru.semenenko.internetshop.service.ClientService;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
