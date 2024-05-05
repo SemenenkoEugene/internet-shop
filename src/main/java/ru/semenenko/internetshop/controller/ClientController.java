@@ -4,6 +4,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +29,14 @@ public class ClientController {
         ClientDto createClient = clientService.createClient(clientDto);
         log.info("Создан новый клиент {}", createClient);
         return createClient;
+    }
+
+    @GetMapping("/{clientPhoneNumber}")
+    @ResponseStatus(HttpStatus.OK)
+    public ClientDto getClientPhoneNumber(@PathVariable String clientPhoneNumber) {
+        log.info("Получен запрос на получение клиента по номеру телефона {}", clientPhoneNumber);
+        ClientDto clientDto = clientService.getClientPhoneNumber(clientPhoneNumber);
+        log.info("Найден клиент {} с номером телефона {}", clientDto, clientPhoneNumber);
+        return clientDto;
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.semenenko.internetshop.dto.ClientDto;
 import ru.semenenko.internetshop.entity.Client;
 import ru.semenenko.internetshop.exception.ClientAlreadyExistsException;
+import ru.semenenko.internetshop.exception.ClientNotFoundException;
 import ru.semenenko.internetshop.mapper.ClientMapper;
 import ru.semenenko.internetshop.repository.ClientRepository;
 import ru.semenenko.internetshop.service.ClientService;
@@ -29,5 +30,13 @@ public class ClientServiceImpl implements ClientService {
             throw new ClientAlreadyExistsException("Клиент с таким номером телефона уже существует");
         }
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ClientDto getClientPhoneNumber(String clientPhoneNumber) {
+        Client client = clientRepository.findByPhoneNumber(clientPhoneNumber)
+                .orElseThrow(() -> new ClientNotFoundException("Клиент с таким номером телефона не найден"));
+        return ClientMapper.toDto(client);
     }
 }

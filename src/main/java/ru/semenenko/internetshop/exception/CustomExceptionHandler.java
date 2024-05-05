@@ -22,6 +22,13 @@ public class CustomExceptionHandler {
         return new ResponseError(HttpStatus.CONFLICT, exception.getMessage());
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseError clientNotFoundHandler(ClientNotFoundException exception) {
+        log.error(exception.getMessage());
+        return new ResponseError(HttpStatus.NOT_FOUND, exception.getMessage());
+    }
+
     @Getter
     @RequiredArgsConstructor
     private static class ResponseError {
