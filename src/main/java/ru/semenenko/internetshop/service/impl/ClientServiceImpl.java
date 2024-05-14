@@ -1,6 +1,8 @@
 package ru.semenenko.internetshop.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.semenenko.internetshop.dto.ClientDto;
@@ -19,6 +21,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional(rollbackFor = ClientAlreadyExistsException.class)
+    @CachePut(value = "client", key = "#clientDto.phoneNumber")
     public ClientDto createClient(ClientDto clientDto) {
 
         Client client = ClientMapper.fromDto(clientDto);
@@ -34,6 +37,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(value = "client", unless = "#result == null")
     public ClientDto getClientPhoneNumber(String clientPhoneNumber) {
         Client client = clientRepository.findByPhoneNumber(clientPhoneNumber)
                 .orElseThrow(() -> new ClientNotFoundException("Клиент с таким номером телефона не найден"));

@@ -29,6 +29,7 @@ class ClientServiceImplTest {
     @Mock
     private ClientRepository clientRepository;
 
+
     @Test
     public void createClient_whenIsOk() {
         ClientDto clientDto = ClientDto.builder().build();
