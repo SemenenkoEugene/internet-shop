@@ -19,18 +19,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        Product product = ProductMapper.INSTANCE.fromEntity(productDto);
+        Product product = productMapper.fromProductDto(productDto);
 
         Product saveProduct = productRepository.save(product);
-        return ProductMapper.INSTANCE.topProductDto(saveProduct);
+        return productMapper.toProductDto(saveProduct);
     }
 
     @Override
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        List<ProductDto> productDtos = products.stream()
-                .map(productMapper::topProductDto)
+        return products.stream()
+                .map(productMapper::toProductDto)
                 .toList();
-        return productDtos;
     }
 }

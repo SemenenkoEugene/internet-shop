@@ -12,7 +12,8 @@ public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     @Mapping(source = "product.typeProduct", target = "typeProductDto")
-    ProductDto topProductDto(Product product);
+    ProductDto toProductDto(Product product);
 
-    Product fromEntity(ProductDto productDto);
+    @Mapping(source = "productDto.typeProductDto", target = "typeProduct")
+    Product fromProductDto(ProductDto productDto);
 }
