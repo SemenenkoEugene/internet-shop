@@ -33,7 +33,7 @@ public class Product {
     @Column(name = "amount_product", nullable = false)
     private Long amount;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "type_product_id")
     private TypeProduct typeProduct;
 }
